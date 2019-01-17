@@ -43,7 +43,7 @@ Add a file at `/data/local/tmp/chrome-command-line`, with the content
 For convenience, a shell script that creates this file is available in this repository. Run it
 by executing `./enable-debug.sh https://svgomg.firebaseapp.com`.
 
-To debug a different PWA, executing the script with a different host:
+To debug a different PWA, execute the script with a different host:
 `./enable-debug.sh https://example.com`
 
 ## License
