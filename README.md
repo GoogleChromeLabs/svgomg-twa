@@ -33,12 +33,13 @@ Here are the 2 steps required to achieve this:
 
 On the Android Device, go to the Chrome version being used to test the TWA and navigate to
 `chrome://flags`. Search for a setting called `Enable commmand line on non-rooted devices` and
-change it to `Enabled`. Restarting the browser may be required.
+change it to `Enabled`. Restarting the browser *multiple* times may be required.
 
 2. Create an Android file with the command-line parameters that allow skipping the TWA validation.
 
 Add a file at `/data/local/tmp/chrome-command-line`, with the content
-`_ --disable-digital-asset-link-verification-for-url="https://svgomg.firebaseapp.com"`.
+`_ --disable-digital-asset-link-verification-for-url="https://svgomg.firebaseapp.com"`. Make sure
+there's not newline at the end of the line, or it may break the launcher.
 
 For convenience, a shell script that creates this file is available in this repository. Run it
 by executing `./enable-debug.sh https://svgomg.firebaseapp.com`.
