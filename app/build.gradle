@@ -22,8 +22,8 @@ android {
         applicationId "org.chromium.twa.svgomg"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
                 // The hostname is used when building the intent-filter, so the TWA is able to
@@ -38,6 +38,11 @@ android {
                 assetStatements: '[{ "relation": ["delegate_permission/common.handle_all_urls"], ' +
                         '"target": {"namespace": "web", "site": "https://svgomg.firebaseapp.com"}}]'
         ]
+
+        // This attribute sets the status bar color for the TWA. It can be either set here or in
+        // `res/values/colors.xml`. Setting in both places is an error and the app will not
+        // compile. If not set, the status bar color defaults to #FFFFFF - white.
+        resValue "color", "colorPrimary", "#303F9F"
     }
     buildTypes {
         release {
@@ -52,5 +57,5 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.github.GoogleChrome.custom-tabs-client:customtabs:7ab7178ae0'
+    implementation 'com.github.GoogleChrome.custom-tabs-client:customtabs:e849e45c90'
 }
