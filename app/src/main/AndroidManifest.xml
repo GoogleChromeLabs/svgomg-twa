@@ -31,7 +31,7 @@
 
         <meta-data
             android:name="asset_statements"
-            android:value="${assetStatements}" />
+            android:resource="@string/asset_statements" />
 
         <activity android:name="android.support.customtabs.trusted.LauncherActivity"
             android:label="${launcherName}">

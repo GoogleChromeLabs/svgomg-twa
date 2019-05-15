@@ -30,13 +30,7 @@ android {
                 // handle Intents to open https://svgomg.firebaseapp.com.
                 hostName: "svgomg.firebaseapp.com",
                 defaultUrl: "https://svgomg.firebaseapp.com",
-                launcherName: "SVGOMG TWA",
-                // This variable below expresses the relationship between the app and the site,
-                // as documented in the TWA documentation at
-                // https://developers.google.com/web/updates/2017/10/using-twa#set_up_digital_asset_links_in_an_android_app
-                // and is injected into the AndroidManifest.xml
-                assetStatements: '[{ "relation": ["delegate_permission/common.handle_all_urls"], ' +
-                        '"target": {"namespace": "web", "site": "https://svgomg.firebaseapp.com"}}]'
+                launcherName: "SVGOMG TWA"
         ]
 
         // This attribute sets the status bar color for the TWA. It can be either set here or in
