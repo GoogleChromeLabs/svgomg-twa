@@ -13,13 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-    <!-- Theme to create a blank screen while the TWA is opening -->
-    <style name="Theme.LauncherActivity" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:backgroundDimEnabled">false</item>
-    </style>
-</resources>
+<paths>
+    <files-path path="twa_splash/" name="twa_splash" />
+</paths>
