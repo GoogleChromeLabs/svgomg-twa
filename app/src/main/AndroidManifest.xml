@@ -25,18 +25,18 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="${launcherName}"
+        android:label="@string/appName"
         android:supportsRtl="true"
         android:theme="@style/Theme.TwaSplash">
 
         <meta-data
             android:name="asset_statements"
-            android:value="${assetStatements}" />
+            android:resource="@string/assetStatements" />
 
         <activity android:name="android.support.customtabs.trusted.LauncherActivity"
-            android:label="${launcherName}">
+            android:label="@string/appName">
             <meta-data android:name="android.support.customtabs.trusted.DEFAULT_URL"
-                android:value="${defaultUrl}" />
+                android:value="@string/launchUrl" />
 
             <meta-data
                 android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
@@ -52,7 +52,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="https"
-                    android:host="${hostName}"/>
+                    android:host="@string/hostName"/>
             </intent-filter>
         </activity>
     </application>
