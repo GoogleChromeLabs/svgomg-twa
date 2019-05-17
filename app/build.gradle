@@ -17,16 +17,18 @@
 apply plugin: 'com.android.application'
 
 def twaManifest = [
+    applicationId: 'org.chromium.twa.svgomg',
     hostName: 'svgomg.firebaseapp.com', // The domain being opened in the TWA.
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
     name: 'SVGOMG TWA', // The name shown on the Android Launcher.
-    themeColor: '#303F9F' // The color used for the status bar.
+    themeColor: '#303F9F', // The color used for the status bar.
+    backgroundColor: '#bababa' // The color used for the splash screen background.
 ]
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "org.chromium.twa.svgomg"
+        applicationId twaManifest.applicationId
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 3
@@ -56,6 +58,13 @@ android {
         // `res/values/colors.xml`. Setting in both places is an error and the app will not
         // compile. If not set, the status bar color defaults to #FFFFFF - white.
         resValue "color", "colorPrimary", twaManifest.themeColor
+
+        // Sets the color for the background used for the splash screen when launching the
+        // Trusted Web Activity.
+        resValue "color", "backgroundColor", twaManifest.backgroundColor
+
+        // Defines a provider authority fot the Splash Screen
+        resValue "string", "providerAuthority", twaManifest.applicationId + '.fileprovider'
     }
     buildTypes {
         release {
@@ -70,5 +79,5 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.github.GoogleChrome.custom-tabs-client:customtabs:d08e93fce3'
+    implementation 'com.github.GoogleChrome.custom-tabs-client:customtabs:f7f1f6483c'
 }
