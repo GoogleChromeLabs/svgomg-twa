@@ -78,5 +78,16 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
+        <service
+             android:name="android.support.customtabs.trusted.TrustedWebActivityService"
+             android:enabled="@bool/enableNotification"
+             android:exported="@bool/enableNotification">
+
+             <intent-filter>
+                 <action android:name="android.support.customtabs.trusted.TRUSTED_WEB_ACTIVITY_SERVICE"/>
+                 <category android:name="android.intent.category.DEFAULT"/>
+             </intent-filter>
+         </service>
+
     </application>
 </manifest>

@@ -22,7 +22,8 @@ def twaManifest = [
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
     name: 'SVGOMG TWA', // The name shown on the Android Launcher.
     themeColor: '#303F9F', // The color used for the status bar.
-    backgroundColor: '#bababa' // The color used for the splash screen background.
+    backgroundColor: '#bababa', // The color used for the splash screen background.
+    enableNotifications: false // Set to true to enable notification delegation
 ]
 
 android {
@@ -65,6 +66,11 @@ android {
 
         // Defines a provider authority fot the Splash Screen
         resValue "string", "providerAuthority", twaManifest.applicationId + '.fileprovider'
+
+        // The enableNotification resource is used to enable or disable the
+        // TrustedWebActivityService, by changing the android:enabled and android:exported
+        // attributes
+        resValue "bool", "enableNotification", twaManifest.enableNotifications.toString()
     }
     buildTypes {
         release {
