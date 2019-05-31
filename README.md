@@ -47,11 +47,11 @@ by executing `./enable-debug.sh https://svgomg.firebaseapp.com`.
 To debug a different PWA, execute the script with a different host:
 `./enable-debug.sh https://example.com`
 
-### Wrapping Up
+### Debugging Digital Asset Links
 
-Assuming the  `assetlinks`  file in place in your domain and the  `asset_statements`  tag configured in the Android application, the next step is generating a signed app. Again, the steps for this are widely  [documented](https://developer.android.com/studio/publish/app-signing#sign-apk).
+As the debug certificate is different from the release one, and the fingerprint for debug should not be listed on the assetlinks.json file, is important to check if your Digital Asset Link is linked and verified.
 
-The output APK can be installed into a test device, using adb:
+After you generated your [signed APK](https://developer.android.com/studio/publish/app-signing#sign-apk). it can be installed into a test device, using adb:
 
 ``
 adb install app-release.apk
@@ -63,7 +63,9 @@ If the verification step fails it is possible to check for error messages using 
 adb logcat | grep -e OriginVerifier -e digital_asset_links
 ``
 
-As the debug certificate is different from the release one, and the fingerprint for debug should not be listed on the assetlinks.json file, you could test release's version in your device with APK generated, before to [upload your app to the Play Store](https://developer.android.com/studio/publish/upload-bundle).
+If it is failing you'll see ``Statement failure matching fingerprint. Verification failed.`` message. Therefore is important to *review* *AndroidManifest.xml* and *build.gradle* files and check if the configurations are matching with the *assetlinks.json*.
+
+Otherwise ``Verification succeeded.`` message should appear.
 
 ## License
 
