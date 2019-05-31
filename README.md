@@ -47,6 +47,24 @@ by executing `./enable-debug.sh https://svgomg.firebaseapp.com`.
 To debug a different PWA, execute the script with a different host:
 `./enable-debug.sh https://example.com`
 
+### Wrapping Up
+
+Assuming the  `assetlinks`  file in place in your domain and the  `asset_statements`  tag configured in the Android application, the next step is generating a signed app. Again, the steps for this are widely  [documented](https://developer.android.com/studio/publish/app-signing#sign-apk).
+
+The output APK can be installed into a test device, using adb:
+
+``
+adb install app-release.apk
+``
+
+If the verification step fails it is possible to check for error messages using the Android Debug Bridge, from your OS’s terminal and with the test device connected.
+
+``
+adb logcat | grep -e OriginVerifier -e digital_asset_links
+``
+
+As the debug certificate is different from the release one, and the fingerprint for debug should not be listed on the assetlinks.json file, you could test release's version in your device with APK generated, before to [upload your app to the Play Store](https://developer.android.com/studio/publish/upload-bundle).
+
 ## License
 
 ```
