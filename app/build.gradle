@@ -91,5 +91,5 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.github.GoogleChrome.custom-tabs-client:customtabs:91b4a1270b'
+    implementation 'com.github.GoogleChrome.custom-tabs-client:customtabs:809a55cfa2'
 }
