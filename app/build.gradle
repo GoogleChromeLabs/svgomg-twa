@@ -33,8 +33,8 @@ def twaManifest = [
     // - url: Absolute path of the URL to launch the app with (e.g '/create').
     // - icon: Name of the resource in the drawable folder to use as an icon.
     shortcuts: [
-        //  Insert shortcuts here, for example:
-        // ['name': 'Open SVG', 'short_name': 'Open', url: '/open', 'icon': 'splash']
+        // Insert shortcuts here, for example:
+        // [name: 'Open SVG', short_name: 'Open', url: '/open', icon: 'splash']
     ]
 ]
 
@@ -62,10 +62,14 @@ android {
         // as documented in the TWA documentation at
         // https://developers.google.com/web/updates/2017/10/using-twa#set_up_digital_asset_links_in_an_android_app
         // and is injected into the AndroidManifest.xml
-        resValue "string", "assetStatements",
-                '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
-                        '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
-                        twaManifest.hostName + '\\"}}]'
+        resValue "string", "assetStatements", """
+            [{
+                "relation": ["delegate_permission/common.handle_all_urls"],
+                "target": {
+                    "namespace: "web",
+                    "site": "https://$twaManifest.hostName"
+                }
+            }]"""
 
         // This attribute sets the status bar color for the TWA. It can be either set here or in
         // `res/values/colors.xml`. Setting in both places is an error and the app will not
