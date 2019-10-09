@@ -57,6 +57,8 @@
             <meta-data android:name="android.support.customtabs.trusted.FILE_PROVIDER_AUTHORITY"
                 android:value="@string/providerAuthority"/>
 
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -69,6 +71,7 @@
                 <data android:scheme="https"
                     android:host="@string/hostName"/>
             </intent-filter>
+
         </activity>
 
         <provider
