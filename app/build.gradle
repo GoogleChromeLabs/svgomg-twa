@@ -108,7 +108,7 @@ android {
 task generateShorcutsFile {
     assert twaManifest.shortcuts.size() < 5, "You can have at most 4 shortcuts."
     twaManifest.shortcuts.eachWithIndex { s, i ->
-        assert s.name != null, 'Missing `asd` in shortcut #' + i
+        assert s.name != null, 'Missing `name` in shortcut #' + i
         assert s.short_name != null, 'Missing `short_name` in shortcut #' + i
         assert s.url != null, 'Missing `icon` in shortcut #' + i
         assert s.icon != null, 'Missing `url` in shortcut #' + i
@@ -137,7 +137,7 @@ task generateShorcutsFile {
                 }
             }
         }
-    shortcutsFile.text = xmlWriter.toString()
+    shortcutsFile.text = xmlWriter.toString() + '\n'
 }
 
 preBuild.dependsOn(generateShorcutsFile)
