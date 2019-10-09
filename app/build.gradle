@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import groovy.xml.MarkupBuilder;
+
 apply plugin: 'com.android.application'
 
 def twaManifest = [
@@ -24,7 +26,16 @@ def twaManifest = [
     themeColor: '#303F9F', // The color used for the status bar.
     backgroundColor: '#bababa', // The color used for the splash screen background.
     enableNotifications: false, // Set to true to enable notification delegation.
-    useBrowserOnChromeOS: true // Set to false if you've added interaction with Android system APIs.
+    useBrowserOnChromeOS: true, // Set to false if you've added interaction with Android system APIs.
+    // Add shortcuts for your app here. Every shortcut must include the following fields:
+    // - name: String that will show up in the shortcut.
+    // - short_name: Shorter string used if |name| is too long.
+    // - url: Absolute path of the URL to launch the app with (e.g '/create').
+    // - icon: Name of the resource in the drawable folder to use as an icon.
+    shortcuts: [
+        //  Insert shortcuts here, for example:
+        // ['name': 'Open SVG', 'short_name': 'Open', url: '/open', 'icon': 'splash']
+    ]
 ]
 
 android {
@@ -77,6 +88,11 @@ android {
         // TWA. When enabled, it causes the web app to be installed as a Desktop PWA on ChromeOS
         // but does not provide any native Android interaction.
         resValue "bool", "useBrowserOnChromeOS", twaManifest.useBrowserOnChromeOS.toString()
+
+        twaManifest.shortcuts.eachWithIndex { shortcut, index ->
+            resValue "string", "shortcut_name_$index", "$shortcut.name"
+            resValue "string", "shortcut_short_name_$index", "$shortcut.short_name"
+        }
     }
     buildTypes {
         release {
@@ -88,6 +104,43 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
+task generateShorcutsFile {
+    assert twaManifest.shortcuts.size() < 5, "You can have at most 4 shortcuts."
+    twaManifest.shortcuts.eachWithIndex { s, i ->
+        assert s.name != null, 'Missing `asd` in shortcut #' + i
+        assert s.short_name != null, 'Missing `short_name` in shortcut #' + i
+        assert s.url != null, 'Missing `icon` in shortcut #' + i
+        assert s.icon != null, 'Missing `url` in shortcut #' + i
+    }
+
+    def shortcutsFile = new File("$projectDir/src/main/res/xml", "shortcuts.xml")
+
+    def xmlWriter = new StringWriter()
+    def xmlMarkup = new MarkupBuilder(new IndentPrinter(xmlWriter, "    ", true))
+
+    xmlMarkup
+        .'shortcuts'('xmlns:android': 'http://schemas.android.com/apk/res/android') {
+            twaManifest.shortcuts.eachWithIndex { s, i ->
+                'shortcut'(
+                        'android:shortcutId': 'shortcut' + i,
+                        'android:enabled': 'true',
+                        'android:icon': '@drawable/' + s.icon,
+                        'android:shortcutShortLabel': '@string/shortcut_short_name_' + i,
+                        'android:shortcutLongLabel': '@string/shortcut_name_' + i) {
+                    'intent'(
+                            'android:action': 'android.intent.action.MAIN',
+                            'android:targetPackage': twaManifest.applicationId,
+                            'android:targetClass': 'android.support.customtabs.trusted.LauncherActivity',
+                            'android:data': 'https://' + twaManifest.hostName + s.url)
+                    'categories'('android:name': 'android.intent.category.LAUNCHER')
+                }
+            }
+        }
+    shortcutsFile.text = xmlWriter.toString()
+}
+
+preBuild.dependsOn(generateShorcutsFile)
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
