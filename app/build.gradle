@@ -35,7 +35,9 @@ def twaManifest = [
     shortcuts: [
         // Insert shortcuts here, for example:
         // [name: 'Open SVG', short_name: 'Open', url: '/open', icon: 'splash']
-    ]
+    ],
+    // The duration of fade out animation in milliseconds to be played when removing splash screen.
+    splashScreenFadeOutDuration: 300
 ]
 
 android {
@@ -97,6 +99,10 @@ android {
             resValue "string", "shortcut_name_$index", "$shortcut.name"
             resValue "string", "shortcut_short_name_$index", "$shortcut.short_name"
         }
+
+        // The splashScreenFadeOutDuration resource is used to set the duration of fade out animation in milliseconds
+        // to be played when removing splash screen. The default is 0 (no animation).
+        resValue "integer", "splashScreenFadeOutDuration", twaManifest.splashScreenFadeOutDuration.toString()
     }
     buildTypes {
         release {
