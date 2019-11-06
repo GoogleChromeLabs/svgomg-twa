@@ -54,6 +54,10 @@ android {
         // The URL that will be used when launching the TWA from the Android Launcher
         resValue "string", "launchUrl", "https://" + twaManifest.hostName + twaManifest.launchUrl
 
+        // The URL for which the browser site settings are to be shown when the user presses "Manage Data"
+        // in the app settings
+        resValue "string", "manageSpaceUrl", "https://" + twaManifest.hostName
+
         // The hostname is used when building the intent-filter, so the TWA is able to
         // handle Intents to open https://svgomg.firebaseapp.com.
         resValue "string", "hostName", twaManifest.hostName
