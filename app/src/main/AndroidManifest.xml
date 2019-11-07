@@ -52,7 +52,7 @@
                 android:resource="@color/backgroundColor"/>
 
             <meta-data android:name="android.support.customtabs.trusted.SPLASH_SCREEN_FADE_OUT_DURATION"
-                android:value="300"/>
+                android:value="@integer/splashScreenFadeOutDuration"/>
 
             <meta-data android:name="android.support.customtabs.trusted.FILE_PROVIDER_AUTHORITY"
                 android:value="@string/providerAuthority"/>
