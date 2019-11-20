@@ -55,7 +55,18 @@ android {
         resValue "string", "appName", twaManifest.name
 
         // The URL that will be used when launching the TWA from the Android Launcher
-        resValue "string", "launchUrl", "https://" + twaManifest.hostName + twaManifest.launchUrl
+        def launchUrl = "https://" + twaManifest.hostName + twaManifest.launchUrl
+        resValue "string", "launchUrl", launchUrl
+
+        // The URL that will be opened as a Desktop PWA when the TWA is installed and
+        // run on ChromeOS. This will probably give a better user experience for non-mobile
+        // devices, but will not include any native Android interaction.
+        // Empty if the TWA should be launched as an Android App within ChromeOS.
+        if (twaManifest.useBrowserOnChromeOS) {
+          resValue "string", "crosLaunchUrl", launchUrl
+        } else {
+          resValue "string", "crosLaunchUrl", ""
+        }
 
         // The hostname is used when building the intent-filter, so the TWA is able to
         // handle Intents to open https://svgomg.firebaseapp.com.
@@ -95,11 +106,6 @@ android {
         // TrustedWebActivityService, by changing the android:enabled and android:exported
         // attributes
         resValue "bool", "enableNotification", twaManifest.enableNotifications.toString()
-
-        // The useBrowserOnChromeOS resources is used to enable or disable ChromeOS support for this
-        // TWA. When enabled, it causes the web app to be installed as a Desktop PWA on ChromeOS
-        // but does not provide any native Android interaction.
-        resValue "bool", "useBrowserOnChromeOS", twaManifest.useBrowserOnChromeOS.toString()
 
         twaManifest.shortcuts.eachWithIndex { shortcut, index ->
             resValue "string", "shortcut_name_$index", "$shortcut.name"
