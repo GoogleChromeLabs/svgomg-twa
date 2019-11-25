@@ -27,7 +27,6 @@ def twaManifest = [
     navigationColor: '#303F9F', // The color used for the navigation bar.
     backgroundColor: '#bababa', // The color used for the splash screen background.
     enableNotifications: false, // Set to true to enable notification delegation.
-    useBrowserOnChromeOS: true, // Set to false if you've added interaction with Android system APIs.
     // Add shortcuts for your app here. Every shortcut must include the following fields:
     // - name: String that will show up in the shortcut.
     // - short_name: Shorter string used if |name| is too long.
@@ -61,12 +60,7 @@ android {
         // The URL that will be opened as a Desktop PWA when the TWA is installed and
         // run on ChromeOS. This will probably give a better user experience for non-mobile
         // devices, but will not include any native Android interaction.
-        // Empty if the TWA should be launched as an Android App within ChromeOS.
-        if (twaManifest.useBrowserOnChromeOS) {
-          resValue "string", "crosLaunchUrl", launchUrl
-        } else {
-          resValue "string", "crosLaunchUrl", ""
-        }
+        resValue "string", "crosLaunchUrl", launchUrl
 
         // The hostname is used when building the intent-filter, so the TWA is able to
         // handle Intents to open https://svgomg.firebaseapp.com.
