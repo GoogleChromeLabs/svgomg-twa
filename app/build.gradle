@@ -41,13 +41,13 @@ def twaManifest = [
 ]
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId twaManifest.applicationId
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 3
-        versionName "1.1.1"
+        versionName "2.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // The name for the application on the Android Launcher
@@ -160,5 +160,5 @@ preBuild.dependsOn(generateShorcutsFile)
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.github.GoogleChrome.custom-tabs-client:customtabs:809a55cfa2'
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:1.0.0'
 }
