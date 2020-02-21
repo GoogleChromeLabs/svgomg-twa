@@ -7,12 +7,17 @@ assignees: ''
 
 ---
 
-**Important:** This demo is still being maintained, but is now automatically 
+**Important:** 
+This demo is still being maintained, but is now automatically 
 generated via [llama-pack](https://www.npmjs.com/package/@llama-pack/cli). We **strongly recommend**
 developers who want to bootstrap their Trusted Web Activity project to use
 [llama-pack]([llama-pack](https://www.npmjs.com/package/@llama-pack/cli)). Since the content
 in this repository is now automatically generated, we'll also be closing the issue tracker. Issues
 should be filed directly in [bugs.chromium.org](https://bugs.chromium.org/), using [this template](https://bugs.chromium.org/p/chromium/issues/entry?components=component:UI%3EBrowser%3EMobile%3ETrustedWebActivities).
+
+If you have a Trusted Web Activity related question, the best place to ask it is on StackOverflow, on the
+[trusted-web-activity tag](https://stackoverflow.com/questions/tagged/trusted-web-activity), which is also
+monitored by the team.
 
 
 **Is your feature request related to a problem? Please describe.**
