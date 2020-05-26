@@ -4,7 +4,7 @@ This project uses the
 [Trusted Web Activities](https://developers.google.com/web/updates/2017/10/using-twa) technology
 to wrap [SVGOMG](https://jakearchibald.github.io/svgomg/) in an Android Application.
 
-**Important:** This demo is still being maintained, but is now automatically 
+> :warning: **Important:** This demo is still being maintained, but is now automatically 
 generated via [llama-pack](https://www.npmjs.com/package/@llama-pack/cli). We **strongly recommend**
 developers who want to bootstrap their Trusted Web Activity project to use
 [llama-pack]([llama-pack](https://www.npmjs.com/package/@llama-pack/cli)). Since the content
